@@ -5,11 +5,18 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-
-<%= yield %>
-
+	<div class="container-fluid">
+		<%= render "shared/header" %>
+	</div>
+	<div class="container-fluid">
+		<%= yield %>
+	</div>
+	<div class="container-fluid">
+		<%= render "shared/footer" %>
+	</div>
 </body>
 	<!-- Include minified versions in deployment -->
 </html>

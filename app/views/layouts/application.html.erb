@@ -2,14 +2,22 @@
 <html>
 <head>
   <title>Expense Manager - Manage your group expenses</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+
 </head>
 <body>
-
-<%= yield %>
-
+	<div class="container-fluid">
+		<%= render "shared/header" %>
+	</div>
+	<div class="container-fluid">
+		<%= yield %>
+	</div>
+	<div class="container-fluid">
+		<%= render "shared/footer" %>
+	</div>
 </body>
 	<!-- Include minified versions in deployment -->
 </html>

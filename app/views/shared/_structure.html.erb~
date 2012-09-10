@@ -1,0 +1,5 @@
+<%= render "shared/header" %>
+
+<%= render "shared/layout" %>
+
+<%= render "shared/footer" %>
