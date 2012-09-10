@@ -1,6 +1,7 @@
 <div class = "row-fluid">
 	<div class="span6 offset3">
 		<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => "form-horizontal" }) do |f| %>
+			<%= devise_error_messages! %>
 			<legend>Sign In</legend>
 			<div class="control-group">
 				<%= f.label :email, :class => "control-label"  %>
