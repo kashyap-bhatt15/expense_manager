@@ -1,4 +1,4 @@
-=== Expense Manager Document ===
+== Expense Manager Document
 
 I plan to make an web application to share expenses between friends/roommates.
 
