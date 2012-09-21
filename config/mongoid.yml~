@@ -67,11 +67,11 @@ test:
       options:
         consistency: :strong
         
-<% if ENV['MONGOHQ_URL'] %>
+<% if ENV['MONGOLAB_URI'] %>
   production:
     sessions:
       default:
-        uri: <%= ENV['MONGOHQ_URL'] %>
+        uri: <%= ENV['MONGOLAB_URI'] %>
         options:
           skip_version_check: true
           safe: true
