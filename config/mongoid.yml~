@@ -67,9 +67,4 @@ test:
       options:
         consistency: :strong
         
-development:
-  sessions:
-    default:
-      database: expense_manager_development
-      hosts:
-        - localhost:27017
+
