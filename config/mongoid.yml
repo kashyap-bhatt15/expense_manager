@@ -67,7 +67,7 @@ test:
       options:
         consistency: :strong
         
-development:
+production:
   sessions:
     default:
       database: expense_manager_development
