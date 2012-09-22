@@ -72,7 +72,7 @@ production:
     default:
       hosts:
         - <%= ENV['MONGOLAB_URI'] %>
-        database: expense_manager_production
+        database: em_production
         username: kpbhatt
         password: kpbhatt
       options:
