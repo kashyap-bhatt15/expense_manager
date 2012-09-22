@@ -72,6 +72,6 @@ production:
     default:
       hosts:
         - <%= ENV['MONGOLAB_URI'] %>
-          database: em_production
+          database: heroku_app7795590
           username: kpbhatt
           password: kpbhatt

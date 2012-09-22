@@ -67,11 +67,10 @@ test:
       options:
         consistency: :strong
 
-production:
+production:   
   sessions:
     default:
-      hosts:
-        - <%= ENV['MONGOLAB_URI'] %>
-          database: heroku_app7795590
-          username: kpbhatt
-          password: kpbhatt
+      uri: <%= ENV['MONGOHQ_URL'] %>
+      options:
+        skip_version_check: true
+        safe: true
