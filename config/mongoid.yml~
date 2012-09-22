@@ -72,9 +72,6 @@ production:
     default:
       hosts:
         - <%= ENV['MONGOLAB_URI'] %>
-        database: em_production
-        username: kpbhatt
-        password: kpbhatt
-      options:
-        skip_version_check: true
-        safe: true
+          database: em_production
+          username: kpbhatt
+          password: kpbhatt
