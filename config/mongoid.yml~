@@ -71,6 +71,7 @@ production:
   sessions:
     default:
       uri: <%= ENV['MONGOLAB_URI'] %>
+      database: expense_manager_production
       options:
         skip_version_check: true
         safe: true

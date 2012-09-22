@@ -70,8 +70,9 @@ test:
 production:
   sessions:
     default:
-      uri: <%= ENV['MONGOLAB_URI'] %>
+      # uri: <%= ENV['MONGOLAB_URI'] %>
       database: expense_manager_production
+      host: ds037907.mongolab.com:37907/heroku_app7795590
       options:
         skip_version_check: true
         safe: true
