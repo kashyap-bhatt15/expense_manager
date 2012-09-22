@@ -1,13 +1,4 @@
-<% if ENV['MONGOHQ_URL'] %>
-  development:
-    sessions:
-    default:
-      uri: <%= ENV['MONGOLAB_URI'] %>
-      options:
-        skip_version_check: true
-        safe: true
-<% else %>
-	development:
+development:
   # Configure available database sessions. (required)
   sessions:
     # Defines the default session. (required)
@@ -67,8 +58,6 @@
 
     # Ensure all times are UTC in the app side. (default: false)
     # use_utc: false
-
-<% end %>
 test:
   sessions:
     default:

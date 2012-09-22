@@ -7,8 +7,7 @@
         skip_version_check: true
         safe: true
 <% else %>
-<% end %>
-development:
+	development:
   # Configure available database sessions. (required)
   sessions:
     # Defines the default session. (required)
@@ -68,6 +67,8 @@ development:
 
     # Ensure all times are UTC in the app side. (default: false)
     # use_utc: false
+
+<% end %>
 test:
   sessions:
     default:
