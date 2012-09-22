@@ -37,7 +37,7 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'debugger'
 
-gem 'therubyracer'
+gem 'therubyracer', :group => [:development, :test]
 
 #gem 'mongo_mapper'
 gem 'bson_ext'
