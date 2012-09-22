@@ -12,7 +12,8 @@
 		<%= stylesheet_link_tag    "bootstrap/rbootstrap-responsive.min", :media => "all" %>
   <% end %>
   <%= javascript_include_tag "application" %>
-  <%#= javascript_include_tag :all %>
+  <% if Rails.env == "production" %>
+  <% end %>
   <%= csrf_meta_tags %>
 
 </head>
