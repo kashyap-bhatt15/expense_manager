@@ -55,3 +55,5 @@ gem "launchy", ">= 2.1.2", :group => :test
 gem "factory_girl_rails", ">= 4.0.0", :group => [:development, :test]
 gem "devise", ">= 2.1.2"
 gem "heroku"
+
+gem 'thin', :group => :production
