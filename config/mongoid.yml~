@@ -66,12 +66,15 @@ test:
         - localhost:27017
       options:
         consistency: :strong
-        
+
 production:
   sessions:
     default:
-      uri: <%= ENV['MONGOLAB_URI'] %>
-      database: expense_manager_production
+      hosts:
+        - <%= ENV['MONGOLAB_URI'] %>
+        database: expense_manager_production
+        username: kpbhatt
+        password: kpbhatt
       options:
         skip_version_check: true
         safe: true
