@@ -20,6 +20,10 @@
 							<% else %>
 								<li><%= link_to "Sign in", "/users/sign_in" %></li>
 							<% end %>
+							<% if user_signed_in? %>
+								<li><%= link_to "New Expense", expense_new_path %></li>
+								<li><%= link_to "New Payment", payment_new_path %></li>
+							<% end %>
 
             </ul>
           </div><!--/.nav-collapse -->

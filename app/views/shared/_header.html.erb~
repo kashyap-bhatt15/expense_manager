@@ -11,9 +11,7 @@
             <ul class="nav">
               <li class="active"><a href="/">Home</a></li>
               <% if user_signed_in? %>
-						  	<li>
-									<%= link_to('Edit account', edit_user_registration_path) %>
-								</li>
+						  	<li><%= link_to('Edit account', edit_user_registration_path) %></li>
 							<% else %>
 								<li><%= link_to "Sign up", "/users/sign_up" %></li>
 							<% end %>
@@ -21,6 +19,10 @@
 								<li><%= link_to('Logout', destroy_user_session_path, :method=>'delete') %></li>
 							<% else %>
 								<li><%= link_to "Sign in", "/users/sign_in" %></li>
+							<% end %>
+							<% if user_signed_in? %>
+								<li><%= link_to "New Expense", "#" %></li>
+								<li><%= link_to "New Payment", "#" %></li>
 							<% end %>
 
             </ul>
