@@ -11,32 +11,44 @@
     </div>
   <% end %>
 	
-	<div class="field">
-    <%= f.label :name_it %><br />
-    <%= f.text_field :name %>
-  </div>
+	<% if @transaction == 1 %>
+		<div class="field">
+		  <%= f.label :name_it %><br />
+		  <%= f.text_field :name %>
+		</div>
+  <% end %>
 
   <div class="field">
     <%= f.label :amount %><br />
     <%= f.text_field :amount %>
   </div>
-  <div class="field">
-    <%= f.label :friends %><br />
-		<%= collection_select(:expense, :user_expenses, @users, :id, :name, {:selected => current_user.id}, {:multiple => true})%>
-  </div>
-
-	<div class="field">
-    <%= f.label :category %><br />
-    <%= collection_select(:expense, :category, @categories, :id, :name)%>
-  </div>
-  <div class="field">
-    <%= f.label :expense_date %><br />
-    <%= f.text_field :expense_date %>
-  </div>
-  <div class="field">
-    <%= f.label :location %><br />
-    <%= f.text_field :location %>
-  </div>
+  <% if @transaction == 1 %>
+  	<%= hidden_field_tag(:transaction, "1") %>
+		<div class="field">
+		  <%= f.label :friends %><br />
+			<%= collection_select(:expense, :user_expenses, @users, :id, :name, {:selected => current_user.id}, {:multiple => true}) %>		
+		</div>
+  <% else %>
+  	<%= hidden_field_tag(:transaction, "-1") %>
+  	<div class="field">
+			<%= f.label :paid_to %><br />
+			<%= collection_select(:expense, :user_expenses, @users, :id, :name) %>
+  	</div>
+	<% end %>
+	<% if @transaction == 1 %>
+		<div class="field">
+		  <%= f.label :category %><br />
+		  <%= collection_select(:expense, :category, @categories, :id, :name)%>
+		</div>
+		<div class="field">
+		  <%= f.label :expense_date %><br />
+		  <%= f.text_field :expense_date %>
+		</div>
+		<div class="field">
+		  <%= f.label :location %><br />
+		  <%= f.text_field :location %>
+		</div>
+	<% end %>
   
   <div class="actions">
     <%= f.submit %>

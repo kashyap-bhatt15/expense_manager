@@ -2,8 +2,8 @@ ExpenseManager::Application.routes.draw do
   resources :posts
 	resources :expenses
   # get "expense/new"
-
-  get "payment/new"
+  # get "payment/new"
+  match 'payments/new' => 'expenses#new'
 
   # get "users/show"
 	root :to => 'home#index'
