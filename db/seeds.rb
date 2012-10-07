@@ -9,6 +9,20 @@
 puts 'EMPTY THE MONGODB DATABASE'
 #Mongoid.master.collections.reject { |c| c.name =~ /^system/}.each(&:drop)
 Mongoid.purge!
-puts 'SETTING UP DEFAULT USER LOGIN'
-user = User.create! :name => 'First User', :email => 'user@example.com', :password => 'please', :password_confirmation => 'please'
-puts 'New user created: ' << user.name
+
+puts ''
+puts 'SETTING UP SOME DEFAULT USER LOGIN'
+user1 = User.create! :name => 'User1', :email => 'user1@example.com', :password => 'please1', :password_confirmation => 'please1'
+user2 = User.create! :name => 'User2', :email => 'user2@example.com', :password => 'please2', :password_confirmation => 'please2'
+user3 = User.create! :name => 'User3', :email => 'user3@example.com', :password => 'please3', :password_confirmation => 'please3'
+user4 = User.create! :name => 'User4', :email => 'user4@example.com', :password => 'please4', :password_confirmation => 'please4'
+puts 'Users created'
+puts ''
+
+puts 'CREATING SOME DEFAULT CATEGORIES'
+cat1 = Category.create! :name => 'House rent', :description => 'House rent'
+cat2 = Category.create! :name => 'Groceries', :description => 'Groceries'
+cat3 = Category.create! :name => 'Household items', :description => 'Household items'
+cat4 = Category.create! :name => 'Utilities', :description => 'Utilities'
+cat5 = Category.create! :name => 'Miscellaneous', :description => 'Miscellaneous'
+puts 'Categories created'

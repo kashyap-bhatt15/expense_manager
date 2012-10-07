@@ -1,5 +1,7 @@
 ExpenseManager::Application.routes.draw do
-  get "expense/new"
+  resources :posts
+	resources :expenses
+  # get "expense/new"
 
   get "payment/new"
 

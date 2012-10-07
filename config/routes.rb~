@@ -1,4 +1,10 @@
 ExpenseManager::Application.routes.draw do
+  resources :posts
+	resources :expenses
+  #get "expense/new"
+
+  get "payment/new"
+
   # get "users/show"
 	root :to => 'home#index'
   devise_for :users

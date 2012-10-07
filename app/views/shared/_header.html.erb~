@@ -21,8 +21,8 @@
 								<li><%= link_to "Sign in", "/users/sign_in" %></li>
 							<% end %>
 							<% if user_signed_in? %>
-								<li><%= link_to "New Expense", "#" %></li>
-								<li><%= link_to "New Payment", "#" %></li>
+								<li><%= link_to "New Expense", "expenses/new" %></li>
+								<li><%= link_to "New Payment", "payments/new" %></li>
 							<% end %>
 
             </ul>

@@ -1,6 +1,6 @@
 class Category
   include Mongoid::Document
-  field :category, type: String
+  field :name, type: String
   field :description, type: String
 
   has_many :expenses
