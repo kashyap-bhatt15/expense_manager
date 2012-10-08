@@ -1,6 +1,8 @@
 <div class = "row-fluid">
 	<div class="span6 offset3">
-		<legend>New Expense</legend>
+		<legend>
+			New <% if @transaction == 1 %>Expense<%else%>Payment<%end%>
+		</legend>
 		<%= render 'form' %>
 	</div>
 </div>

@@ -18,6 +18,7 @@ module ApplicationHelper
 	
 	# Format and prep settlement amount from code understanding format to user understanding format.
 	def get_settlement(settlement_amount, user_name)
+		settlement_amount = settlement_amount.to_f
 		settlement_amount = settlement_amount.round(2)
 		#settlement_amount = "%0.2f" % settlement_amount
 		settle_text = "Some error in function...."

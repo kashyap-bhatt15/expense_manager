@@ -1,4 +1,6 @@
 ExpenseManager::Application.routes.draw do
+  get "front/index"
+
   resources :posts
 	resources :expenses
   # get "expense/new"
@@ -6,7 +8,7 @@ ExpenseManager::Application.routes.draw do
   match 'payments/new' => 'expenses#new'
 
   # get "users/show"
-	root :to => 'home#index'
+	root :to => 'front#index'
   devise_for :users
   resources :users, :only => :show
 	

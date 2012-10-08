@@ -1,4 +1,35 @@
-<h3>Home</h3>
-<% @users.each do |user| %>
-  <p>User: <%=link_to user.name, user %></p>
-<% end %>
+<div class = "row-fluid">
+	<div class="span6">
+		<legend>Common expense summary/activity
+		</legend>
+		<legend>Summary</legend>
+		<% @users.each do |user| %>
+			<% if user != current_user %>
+				<%= raw(get_settlement(@settlement_amount[user.id], user.name)) %><br>
+			<% end %>
+		<% end %>
+		<legend>Activity</legend>
+		<h5>To pay transactions for <%= current_user.name %>:</h5><br>
+		<% @pay.each do |pays| %>
+			<% pays.each do |pay| %>
+  			Pay $<%= pay.amount.round(2) %> to <%= get_user_name(pay.payee_id) %> for expense on <%= get_date(pay.created_at) %> <br>  			
+  		<% end %>
+		<% end %>
+		<br>
+		<h5>To collect transactions for <%= current_user.name %>:</h5><br>
+		<% @collect.each do |collects| %>
+			<% collects.each do |collect| %>
+	  		Collect $<%= collect.amount.round(2) %> From <%= get_user_name(collect.user_id) %> for expense on <%= get_date(collect.created_at) %><br>
+	  		<br>
+  		<% end %>
+		<% end %>
+	</div>
+	<div class="span6">
+		<legend>Personal expense summary
+		</legend>
+		<% @users.each do |user| %>
+  		<p>User: <%=link_to user.name, user %></p>
+		<% end %>
+	</div>
+</div>
+

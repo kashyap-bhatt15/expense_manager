@@ -9,8 +9,18 @@
           <a class="brand" href="/">Expense Manager</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="/">Home</a></li>
-              <% if user_signed_in? %>
+	              <li class="active">
+	              	<% if user_signed_in? %>
+	              		<li><%= link_to "Home", home_index_path%></li>
+              		<% else %>
+	              		<li><%= link_to "Home", root_path %></li>
+              		<% end %>
+            		</li>
+							<% if user_signed_in? %>
+								<li><%= link_to "New Expense", "/expenses/new" %></li>
+								<li><%= link_to "New Payment", "/payments/new" %></li>
+							<% end %>
+							<% if user_signed_in? %>
 						  	<li><%= link_to('Edit account', edit_user_registration_path) %></li>
 							<% else %>
 								<li><%= link_to "Sign up", "/users/sign_up" %></li>
@@ -19,10 +29,6 @@
 								<li><%= link_to('Logout', destroy_user_session_path, :method=>'delete') %></li>
 							<% else %>
 								<li><%= link_to "Sign in", "/users/sign_in" %></li>
-							<% end %>
-							<% if user_signed_in? %>
-								<li><%= link_to "New Expense", "expenses/new" %></li>
-								<li><%= link_to "New Payment", "payments/new" %></li>
 							<% end %>
 
             </ul>
