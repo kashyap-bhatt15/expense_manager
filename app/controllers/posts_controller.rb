@@ -1,3 +1,4 @@
+# Post controller. Made using scaffolding. Not used in application. Class is made to refer basic idea of create method. will be deleted in the end
 class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json

@@ -1,3 +1,4 @@
+# Application helper
 module ApplicationHelper
 
 	# Return the user name from user id

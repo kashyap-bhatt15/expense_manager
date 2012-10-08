@@ -89,7 +89,7 @@ class ExpensesController < ApplicationController
 		
     respond_to do |format|
       if @expense.save
-        format.html { redirect_to root_path, notice: 'Post was successfully created.' }
+        format.html { redirect_to home_index_path, notice: 'Post was successfully created.' }
         format.json { render json: @expense, status: :created, location: @expense }
       else
         format.html { render action: "new" }

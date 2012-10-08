@@ -1,0 +1,5 @@
+# Front controller. Will be used for home page before login
+class FrontController < ApplicationController
+  def index
+  end
+end

@@ -1,3 +1,4 @@
+# Application controller. Class methods can be used in any other controller class
 class ApplicationController < ActionController::Base
   protect_from_forgery
   

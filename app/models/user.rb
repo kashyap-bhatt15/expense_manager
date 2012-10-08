@@ -1,3 +1,4 @@
+# User created by devise. Few  changes for user table and some validation
 class User
   include Mongoid::Document
   include Mongoid::Timestamps

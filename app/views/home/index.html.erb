@@ -3,6 +3,10 @@
 		<legend>Common expense summary/activity
 		</legend>
 		<legend>Summary</legend>
+		<div class = "row-fluid">
+			<div id="visualization" class="span6 home_graph"></div>
+			<div id="visualization1" class="span6 home_graph"></div>
+		</div>
 		<% @users.each do |user| %>
 			<% if user != current_user %>
 				<%= raw(get_settlement(@settlement_amount[user.id], user.name)) %><br>
@@ -33,3 +37,46 @@
 	</div>
 </div>
 
+<!-- Javascript for Google chart api -->
+<script type="text/javascript" src="http://www.google.com/jsapi">http://www.apache.org/licenses/LICENSE-2.0.html</script>
+<script type="text/javascript">
+  google.load('visualization', '1', {packages: ['corechart']});
+</script>
+<script type="text/javascript">
+  function drawVisualization() {
+    // Create and populate the data table.
+    var data_pay = google.visualization.arrayToDataTable([
+      ['Name', 'Amount'],
+      <% @to_pay_amount.each do |pay| %>
+      <%= raw("['#{pay[1][1]}', #{pay[1][0]}]") %>,
+      <% end %>
+    ]);
+    var data_collect = google.visualization.arrayToDataTable([
+      ['Name', 'Amount'],
+      <% @to_collect_amount.each do |pay| %>
+      <%= raw("['#{pay[1][1]}', #{pay[1][0]}]") %>,
+      <% end %>
+    ]);
+  	
+  	var options_pay = {
+  		pieSliceText:'value',
+  		legend:'bottom',
+  		is3D: true,
+  		title:"Pay"
+  	};
+  	var options_collect = {
+  		pieSliceText:'value',
+  		legend:'bottom',
+  		is3D: true,
+  		title:"Collect"
+  	};
+    // Create and draw the visualization.
+    new google.visualization.PieChart(document.getElementById('visualization')).
+        draw(data_pay, options_pay);
+    new google.visualization.PieChart(document.getElementById('visualization1')).
+        draw(data_collect,options_collect);
+  }
+  
+
+  google.setOnLoadCallback(drawVisualization);
+</script>

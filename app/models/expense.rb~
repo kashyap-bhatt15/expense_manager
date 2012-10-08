@@ -11,6 +11,6 @@ class Expense
   has_many :user_expenses
   
   validates_presence_of :amount
-  validates_presence_of :expense_date
-  
+  # validates_presence_of :expense_date
+
 end

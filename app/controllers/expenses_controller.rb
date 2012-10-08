@@ -1,3 +1,4 @@
+# Expense controller. Used for methods that supports expense and payment forms
 class ExpensesController < ApplicationController
 	before_filter :authenticate_user!
 	

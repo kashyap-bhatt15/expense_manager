@@ -11,9 +11,9 @@
             <ul class="nav">
 	              <li class="active">
 	              	<% if user_signed_in? %>
-	              		<li><%= link_to "Home", home_index_path%></li>
+	              		<%= link_to "Home", home_index_path%>
               		<% else %>
-	              		<li><%= link_to "Home", root_path %></li>
+	              		<%= link_to "Home", root_path %>
               		<% end %>
             		</li>
 							<% if user_signed_in? %>

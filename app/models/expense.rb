@@ -1,3 +1,4 @@
+# Expense
 class Expense
   include Mongoid::Document
   include Mongoid::Timestamps

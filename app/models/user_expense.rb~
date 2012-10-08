@@ -1,5 +1,6 @@
 class UserExpense
   include Mongoid::Document
+  include Mongoid::Timestamps
   
   field :amount, type: Float
   field :settled, type: Boolean, default: 0

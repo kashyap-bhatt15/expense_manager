@@ -1,4 +1,4 @@
+# Payment controller. Not used as of now
 class PaymentController < ApplicationController
-  def new
-  end
+  before_filter :authenticate_user!
 end
