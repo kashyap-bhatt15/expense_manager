@@ -10,3 +10,6 @@ On the top of Managing these expenses, I want to make it budget monitor for stud
 Planning: I have thought of this application from long time but getting time and opportunity to do it now. I have started this project from sepetember, 2012 and I plan to finish and publish first usable version by the end of November 15, 2012.
 
 Technical Details: I will publish some technical details here along the development.
+
+
+* [Staging](http://fathomless-coast-7409.herokuapp.com/)
