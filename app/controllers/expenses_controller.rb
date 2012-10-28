@@ -17,8 +17,12 @@ class ExpensesController < ApplicationController
   	if @transaction == 1
 			@categories = Category.all
 			@locations = Location.all
+			@users = User.all
+		else
+			@users = User.ne(id: current_user.id)
 		end
-		@users = User.all
+		
+		#@users = User.all
     respond_to do |format|
       format.html # new.html.erb
       format.json { render :json => { :expense => @expense, 

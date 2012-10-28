@@ -1,3 +1,4 @@
+# Expense controller. Used for methods that supports expense and payment forms
 class ExpensesController < ApplicationController
 	before_filter :authenticate_user!
 	
@@ -16,8 +17,17 @@ class ExpensesController < ApplicationController
   	if @transaction == 1
 			@categories = Category.all
 			@locations = Location.all
+			@users = User.all
+		else
+			#@users = User.all 
+			@users = User.ne(id: current_user.id)
+			puts "==================================================================="
+			@users.each do |a| puts a.id end
+			puts "==================================================================="
+			#@users = @users1
 		end
-		@users = User.all
+		
+		#@users = User.all
     respond_to do |format|
       format.html # new.html.erb
       format.json { render :json => { :expense => @expense, 
