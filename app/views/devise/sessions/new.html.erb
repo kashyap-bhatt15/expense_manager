@@ -13,21 +13,25 @@
 					<%= f.password_field :password, :placeholder => "Write your password here...", :class => "input-xlarge" %>
 				</div>
 			</div>
-			
 			<div class="control-group">
 				<div class="controls">
 					<% if devise_mapping.rememberable? -%>
 						<label class="checkbox"><%= f.check_box :remember_me %> Remember me</label>
 					<% end -%>
-					<%= f.submit "Sign in", :class => "btn btn-primary" %>
 				</div>
 			</div>
 			<div class="control-group">
-				<div class = "controls">
-					<%= render "devise/shared/links" %>
+				<div class="controls">
+					
+					<%= f.submit "Sign in", :class => "btn btn-primary" %>
 				</div>
 			</div>
 		<% end %>
+		<div class="control-group">
+			<div class = "controls">
+				<%= render "devise/shared/links" %>
+			</div>
+		</div>
 
 		
 	</div>
