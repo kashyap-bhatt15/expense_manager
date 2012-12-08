@@ -1,15 +1,6 @@
 == Expense Manager Document
 
-I plan to make an web application to share expenses between friends/roommates.
-
-Inspiration: I share my accommodation with my 3 other friends. And Every week something needs to be bought. Some one buys groceries or some other stuff that needs to be divided between all 4 of us. But sometimes we buy something that not everyone at home uses hence not divided by 4. When all those things merge in same bill from FoodMaxx, it becomes mess and so much time consuming. It would have been easy if some application could do for us. I am sure this same problem is suffered by ohers as well. To solve these problem I am making this web application.
-
-On the top of Managing these expenses, I want to make it budget monitor for students or alike. Apart from sharing expenses with my friends I also have my personal expenses. Tools like Mint does good job but it is not much useful for student like me. Bank entries are not clear picture of my financial health. I think this tool will provide me better insight at my expenses, so It will also have Expense Monitor section.
-
-
-Planning: I have thought of this application from long time but getting time and opportunity to do it now. I have started this project from sepetember, 2012 and I plan to finish and publish first usable version by the end of November 15, 2012.
-
-Technical Details: I will publish some technical details here along the development.
+Application for managing shared expenses and personal budget monitoring. 
 
 
 * [Staging](http://fathomless-coast-7409.herokuapp.com/)

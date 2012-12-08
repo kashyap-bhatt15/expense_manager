@@ -185,7 +185,7 @@ supports expense and payment forms</p>
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/expenses_controller.rb, line 34</span>
+            <pre><span class="ruby-comment"># File app/controllers/expenses_controller.rb, line 38</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
       <span class="ruby-comment">#@expense = Expense.new(params[:expense])</span>
               <span class="ruby-ivar">@transaction</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:transaction</span>].<span class="ruby-identifier">to_i</span>
@@ -294,8 +294,12 @@ supports expense and payment forms</p>
       <span class="ruby-keyword">if</span> <span class="ruby-ivar">@transaction</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
                       <span class="ruby-ivar">@categories</span> = <span class="ruby-constant">Category</span>.<span class="ruby-identifier">all</span>
                       <span class="ruby-ivar">@locations</span> = <span class="ruby-constant">Location</span>.<span class="ruby-identifier">all</span>
+                      <span class="ruby-ivar">@users</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">all</span>
+              <span class="ruby-keyword">else</span>
+                      <span class="ruby-ivar">@users</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">ne</span>(<span class="ruby-identifier">id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
               <span class="ruby-keyword">end</span>
-              <span class="ruby-ivar">@users</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">all</span>
+              
+              <span class="ruby-comment">#@users = User.all</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> <span class="ruby-comment"># new.html.erb</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:json</span> =<span class="ruby-operator">&gt;</span> { <span class="ruby-value">:expense</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@expense</span>, 

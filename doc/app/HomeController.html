@@ -70,6 +70,8 @@
 
   <ul class="link-list">
     
+    <li><a href="#method-i-graph_date">#graph_date</a>
+    
     <li><a href="#method-i-index">#index</a>
     
   </ul>
@@ -166,6 +168,36 @@
       <h3 class="section-header">Public Instance Methods</h3>
 
     
+      <div id="method-i-graph_date" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">graph_date</span><span
+            class="method-args">(d)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="graph_date-source">
+            <pre><span class="ruby-comment"># File app/controllers/home_controller.rb, line 124</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">graph_date</span>(<span class="ruby-identifier">d</span>)
+  <span class="ruby-identifier">d</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-string">'%a %b %d, %Y'</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- graph_date-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- graph_date-method -->
+
+    
       <div id="method-i-index" class="method-detail ">
         
         <div class="method-heading">
@@ -193,7 +225,7 @@
       <span class="ruby-comment"># Following two hashes for graph data</span>
       <span class="ruby-ivar">@to_pay_amount</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
       <span class="ruby-ivar">@to_collect_amount</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
-      <span class="ruby-ivar">@users</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">user</span><span class="ruby-operator">|</span>
+      <span class="ruby-constant">User</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">user</span><span class="ruby-operator">|</span>
               <span class="ruby-comment"># If user is not eqaul to current user then calculate his/her dues/collection with that user</span>
               <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>
                       <span class="ruby-comment"># All to pay transactions in @pay and to collect transactions in @collect</span>
@@ -230,7 +262,75 @@
               <span class="ruby-keyword">else</span>
                       <span class="ruby-comment"># Same as current user no need to do anything for common expense</span>
               <span class="ruby-keyword">end</span>
-      <span class="ruby-keyword">end</span> <span class="ruby-comment"># Users loop end         </span>
+      <span class="ruby-keyword">end</span> <span class="ruby-comment"># Users loop end</span>
+  <span class="ruby-comment"># Find the categorywise expense for current user.</span>
+  <span class="ruby-ivar">@my_expense_array</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+
+  <span class="ruby-ivar">@user_expenses</span> = <span class="ruby-constant">UserExpense</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+  <span class="ruby-ivar">@expense_ids</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@user_expenses</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">ue</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@expense_ids</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">ue</span>.<span class="ruby-identifier">expense_id</span> }
+  
+  <span class="ruby-ivar">@my_expenses</span> = <span class="ruby-constant">Expense</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@expense_ids</span>)
+  <span class="ruby-ivar">@category_ids</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@my_expenses</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">cat</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@category_ids</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">cat</span>.<span class="ruby-identifier">category_id</span> }
+
+  <span class="ruby-ivar">@user_expenses</span>.<span class="ruby-identifier">length</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">hashes</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-identifier">hashes</span>[<span class="ruby-string">&quot;expense_id&quot;</span>] = <span class="ruby-ivar">@user_expenses</span>[<span class="ruby-identifier">i</span>].<span class="ruby-identifier">expense_id</span>
+    <span class="ruby-identifier">hashes</span>[<span class="ruby-string">&quot;category_id&quot;</span>] = <span class="ruby-ivar">@my_expenses</span>[<span class="ruby-identifier">i</span>].<span class="ruby-identifier">category_id</span>
+    <span class="ruby-identifier">hashes</span>[<span class="ruby-string">&quot;amount&quot;</span>] = <span class="ruby-ivar">@user_expenses</span>[<span class="ruby-identifier">i</span>].<span class="ruby-identifier">amount</span>
+    <span class="ruby-identifier">hashes</span>[<span class="ruby-string">&quot;expense_date&quot;</span>] = <span class="ruby-ivar">@my_expenses</span>[<span class="ruby-identifier">i</span>].<span class="ruby-identifier">expense_date</span>
+    <span class="ruby-identifier">hashes</span>[<span class="ruby-string">&quot;user_id&quot;</span>] = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>
+    <span class="ruby-identifier">hashes</span>[<span class="ruby-string">&quot;category_name&quot;</span>] = <span class="ruby-constant">Category</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@my_expenses</span>[<span class="ruby-identifier">i</span>].<span class="ruby-identifier">category_id</span>)
+    <span class="ruby-identifier">hashes</span>[<span class="ruby-string">&quot;category_name&quot;</span>] = <span class="ruby-identifier">hashes</span>[<span class="ruby-string">&quot;category_name&quot;</span>].<span class="ruby-identifier">name</span>
+    <span class="ruby-ivar">@my_expense_array</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">hashes</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-ivar">@category_wise_amount</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@date_wise_amount</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+
+  <span class="ruby-ivar">@categories</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@category_positions</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+
+  <span class="ruby-ivar">@dates</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@date_positions</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+
+  <span class="ruby-ivar">@my_expense_array</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">me</span><span class="ruby-operator">|</span>
+    <span class="ruby-comment"># Category wise</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@categories</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@categories</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">me</span>[<span class="ruby-string">&quot;category_name&quot;</span>])
+      <span class="ruby-ivar">@category_wise_amount</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">cwa</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">cwa</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-identifier">me</span>[<span class="ruby-string">&quot;category_name&quot;</span>])
+          <span class="ruby-identifier">cwa</span>[<span class="ruby-identifier">me</span>[<span class="ruby-string">&quot;category_name&quot;</span>]] = <span class="ruby-identifier">cwa</span>[<span class="ruby-identifier">me</span>[<span class="ruby-string">&quot;category_name&quot;</span>]].<span class="ruby-identifier">to_f</span>.<span class="ruby-identifier">round</span>(<span class="ruby-value">2</span>) <span class="ruby-operator">+</span> <span class="ruby-identifier">me</span>[<span class="ruby-string">&quot;amount&quot;</span>].<span class="ruby-identifier">to_f</span>.<span class="ruby-identifier">round</span>(<span class="ruby-value">2</span>)
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">hashes</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+      <span class="ruby-identifier">hashes</span>[<span class="ruby-node">&quot;#{me['category_name']}&quot;</span>] = <span class="ruby-identifier">me</span>[<span class="ruby-string">&quot;amount&quot;</span>].<span class="ruby-identifier">to_f</span>.<span class="ruby-identifier">round</span>(<span class="ruby-value">2</span>)
+      <span class="ruby-comment">#hashes[&quot;amount&quot;] = me[&quot;amount&quot;]</span>
+      <span class="ruby-ivar">@category_wise_amount</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">hashes</span>
+      <span class="ruby-ivar">@categories</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">me</span>[<span class="ruby-string">&quot;category_name&quot;</span>]
+      <span class="ruby-ivar">@category_positions</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@category_wise_amount</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>
+      
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-comment"># Date wise</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@dates</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@dates</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">me</span>[<span class="ruby-string">&quot;expense_date&quot;</span>].<span class="ruby-identifier">strftime</span>(<span class="ruby-string">'%a %b %d, %Y'</span>))
+      <span class="ruby-ivar">@date_wise_amount</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">dwa</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">dwa</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-identifier">me</span>[<span class="ruby-string">&quot;expense_date&quot;</span>].<span class="ruby-identifier">strftime</span>(<span class="ruby-string">'%a %b %d, %Y'</span>))
+          <span class="ruby-identifier">dwa</span>[<span class="ruby-identifier">me</span>[<span class="ruby-string">&quot;expense_date&quot;</span>].<span class="ruby-identifier">strftime</span>(<span class="ruby-string">'%a %b %d, %Y'</span>)] = <span class="ruby-identifier">dwa</span>[<span class="ruby-identifier">me</span>[<span class="ruby-string">&quot;expense_date&quot;</span>].<span class="ruby-identifier">strftime</span>(<span class="ruby-string">'%a %b %d, %Y'</span>)] <span class="ruby-operator">+</span> <span class="ruby-identifier">me</span>[<span class="ruby-string">&quot;amount&quot;</span>].<span class="ruby-identifier">to_f</span>.<span class="ruby-identifier">round</span>(<span class="ruby-value">2</span>)
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">hashes</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+      <span class="ruby-identifier">date_expenses</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+      <span class="ruby-identifier">hashes</span>[<span class="ruby-node">&quot;#{me['expense_date'].strftime('%a %b %d, %Y')}&quot;</span>] = <span class="ruby-identifier">me</span>[<span class="ruby-string">&quot;amount&quot;</span>].<span class="ruby-identifier">to_f</span>.<span class="ruby-identifier">round</span>(<span class="ruby-value">2</span>)
+      <span class="ruby-comment">#hashes[&quot;amount&quot;] = me[&quot;amount&quot;]</span>
+      <span class="ruby-ivar">@date_wise_amount</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">hashes</span>
+      <span class="ruby-ivar">@dates</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">me</span>[<span class="ruby-string">&quot;expense_date&quot;</span>].<span class="ruby-identifier">strftime</span>(<span class="ruby-string">'%a %b %d, %Y'</span>)
+      <span class="ruby-ivar">@date_positions</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@date_wise_amount</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+
 <span class="ruby-keyword">end</span></pre>
           </div><!-- index-source -->
           

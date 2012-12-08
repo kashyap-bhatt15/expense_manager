@@ -1,8 +1,0 @@
-rake doc:app
-rake assets:precompile
-git add --all
-git commit -m 'commit message'
-git push origin master
-git push heroku master
-
-
