@@ -1,5 +1,7 @@
 <div class = "row-fluid">
-	<div class="span8 offset3">
+	<div class="span3 hidden-phone">
+	</div>
+	<div class="span6">
 		<legend>Edit <%= resource_name.to_s.humanize %></legend>
 
 		<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => "form-horizontal" }) do |f| %>
@@ -10,40 +12,49 @@
 			</div>
 			<div class="control-group">
 				<div class="controls">
-					<%= f.text_field :name, :placeholder => "Your name" %>
+					<%= f.text_field :name, :placeholder => "Your name", :class => "input-xlarge" %>
 				</div>
 			</div>
 			<div class="control-group">
 				<div class="controls">
-					<%= f.email_field :email, :placeholder => "Enter email" %>
+					<%= f.email_field :email, :placeholder => "Enter email", :class => "input-xlarge" %>
 				</div>
 			</div>
 			<div class="control-group">
 				<div class="controls">
-					<%= f.password_field :password, :autocomplete => "off", :placeholder => "New Password" %><span class="help-inline error"><i>(leave blank if you don't want to change it)</i></span>
+					<%= f.password_field :password, :autocomplete => "off", :placeholder => "New Password", :class => "input-xlarge" %>
+					<span class="help-inline error"><i>(leave blank if you don't want to change it)</i></span>
 				</div>
 			</div>
 			<div class="control-group">
 				<div class="controls">
-					<%= f.password_field :password_confirmation, :placeholder => "Confirm new Password"%>
+					<%= f.password_field :password_confirmation, :placeholder => "Confirm new Password", :class => "input-xlarge"%>
 				</div>
 			</div>
 			<div class="control-group">
 				<div class="controls">
-				<%= f.password_field :current_password , :placeholder => "Current password"%><span class="help-inline error"><i>(we need your current password to confirm your changes)</i></span>
+				<%= f.password_field :current_password , :placeholder => "Current password", :class => "input-xlarge"%>
+				<span class="help-inline error"><i>(we need your current password to confirm your changes)</i></span>
 				</div>
 			</div>
 			<div class="control-group">
 				<div class="controls">
-					<%= f.submit "Update", :class => "btn btn-primary" %>
+					<%= f.submit "Update", :class => "btn-large btn-primary" %>
+				
+					<%= link_to "Back", :back, :class => "btn btn-mini" %>
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="controls">
+			<ul class="nav nav-pills">
+				<li class="active">
+					<h4>Unhappy?</h4></li><li class="active"> <%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "btn-danger" %>
+				</li>
+			</ul>
 				</div>
 			</div>
 		<% end %>
 
-		<h4>Cancel my account</h4>
-
-		<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "btn" %>.</p>
-
-		<%= link_to "Back", :back, :class => "btn btn-mini" %>
+		
 	</div>
 </div>

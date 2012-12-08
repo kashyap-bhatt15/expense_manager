@@ -1,56 +1,76 @@
-<%= form_for(@expense) do |f| %>
-  <% if @expense.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@expense.errors.count, "error") %> prohibited this post from being saved:</h2>
+<%= form_for(@expense, :html => { :class => "form-horizontal" }) do |f| %>
+  	<% if @expense.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@expense.errors.count, "error") %> prohibited this post from being saved:</h2>
 
-      <ul>
-      <% @expense.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+	      <ul>
+	      <% @expense.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+  	<% end %>
 	
 	<% if @transaction == 1 %>
-		<div class="field">
-		  <%= f.label :name_it %><br />
-		  <%= f.text_field :name %>
+		<div class="control-group">
+			<div class="controls">
+	  			<%= f.text_field :name, :placeholder => "Name the expense...", :class => "input-xlarge" %>
+			</div>
 		</div>
-  <% end %>
+  	<% end %>
 
-  <div class="field">
-    <%= f.label :amount %><br />
-    <%= f.text_field :amount %>
-  </div>
-  <% if @transaction == 1 %>
-  	<%= hidden_field_tag(:transaction, "1") %>
-		<div class="field">
-		  <%= f.label :friends %><br />
-			<%= collection_select(:expense, :user_expenses, @users, :id, :name, {:selected => current_user.id}, {:multiple => true}) %>		
-		</div>
-  <% else %>
-  	<%= hidden_field_tag(:transaction, "-1") %>
-  	<div class="field">
-			<%= f.label :paid_to %><br />
-			<%= collection_select(:expense, :user_expenses, @users, :id, :name) %>
+
+  	<div class="control-group">
+		<div class="controls input-prepend">
+			<span class="add-on">$</span>
+		    <%= f.text_field :amount, :placeholder => "Amount...", :class => "input-large" %>
+  		</div>
   	</div>
+  	<% if @transaction == 1 %>
+  		<%= hidden_field_tag(:transaction, "1") %>
+		<div class="control-group">
+			<div class="controls">
+				<%= collection_select(:expense, :user_expenses, @users, :id, :name, {:selected => current_user.id}, {:multiple => true, :class => "input-xlarge"}) %>
+				<span class="help-inline"><i>Select your friends included in this expense</i></span>
+			</div>
+		</div>
+  	<% else %>
+  		<%= hidden_field_tag(:transaction, "-1") %>
+  		<div class="control-group">
+			<div class="controls">
+				<%= collection_select(:expense, :user_expenses, @users, :id, :name, {}, {:class => "input-xlarge"}) %>
+				<br><span class="help-inline error"><i>Who did you pay to?</i></span>
+  			</div>
+		</div>
 	<% end %>
 	<% if @transaction == 1 %>
-		<div class="field">
-		  <%= f.label :category %><br />
-		  <%= collection_select(:expense, :category, @categories, :id, :name)%>
+		<div class="control-group">
+			<div class="controls">
+			  <%= collection_select(:expense, :category, @categories, :id, :name, {}, {:class => "input-xlarge"}) %>
+			  <span class="help-inline"><i>Choose category for your expense</i></span>
+			</div>
 		</div>
-		<div class="field">
-		  <%= f.label :expense_date %><br />
-		  <%= f.text_field :expense_date %>
+		<div class="control-group">
+			<div class="controls">
+		  		<%= f.text_field :expense_date, :value => "#{Time.new.strftime('%m-%d-%Y')}", :placeholder => "Select expense date...", :class => "input-xlarge" %>
+		  		<span class="help-inline"><i>Choose the date when expense happened</i></span>
+			</div>
 		</div>
+		<!--
 		<div class="field">
 		  <%= f.label :location %><br />
 		  <%= f.text_field :location %>
 		</div>
+		-->
 	<% end %>
   
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  	<div class="control-group">
+		<div class="controls">
+			<% if @transaction == 1 %>
+    			<%= f.submit "Create Expense", :class => "btn-large btn-primary"%>
+    		<% else %>
+    			<%= f.submit "Post Payment", :class => "btn-large btn-primary"%>
+    		<% end %>
+  		</div>
+  	</div>
 <% end %>

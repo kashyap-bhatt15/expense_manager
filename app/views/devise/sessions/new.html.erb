@@ -1,5 +1,7 @@
 <div class = "row-fluid">
-	<div class="span6 offset3">
+	<div class="span3 hidden-phone">
+	</div>
+	<div class="span6">
 		<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => "form-horizontal" }) do |f| %>
 			<%= devise_error_messages! %>
 			<legend>Sign In</legend>
@@ -22,8 +24,7 @@
 			</div>
 			<div class="control-group">
 				<div class="controls">
-					
-					<%= f.submit "Sign in", :class => "btn btn-primary" %>
+					<%= f.submit "Sign in", :class => "btn-large btn-primary" %>
 				</div>
 			</div>
 		<% end %>
