@@ -11,18 +11,100 @@
 		<%= stylesheet_link_tag    "bootstrap/rbootstrap-responsive.min", :media => "all" %>
   <% end %>
   <%= javascript_include_tag "application" %>
-  <% if Rails.env == "production" %>
-  <% end %>
+  
   <%= csrf_meta_tags %>
 
 </head>
 <body>
-	<div class="container-fluid">
-		<%= render "shared/header" %>
-		<%= yield %>
+	<%= render "shared/header" %>
+  <% if params[:controller] == 'front' && params[:action] = 'index' %>
+    <%= yield %>
+  <% else %>
+      <%= yield %>    
+  <% end %>
 	<footer class="footer">
-			<%= render "shared/footer" %>
+		<%= render "shared/footer" %>
 	</footer>
 </body>
 	<!-- Include minified versions in deployment -->
 </html>
+<style type="text/css">
+/* Special class on .container surrounding .navbar, used for positioning it into place. */
+    <% if params[:controller] == 'front' && params[:action] = 'index' %>
+    .navbar-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999999;
+      margin-top: 20px;
+      margin-bottom: -90px; /* Negative margin to pull up carousel. 90px is roughly margins and height of navbar. */
+    }
+    <% else %>
+    .navbar-wrapper {
+      margin-top: 20px;
+    }
+    <% end %>
+
+    /* Carousel base class */
+    .carousel {
+      margin-bottom: 60px;
+    }
+
+    .carousel .container {
+      position: relative;
+      z-index: 10;
+    }
+
+    .carousel-control {
+      height: 80px;
+      margin-top: 0;
+      font-size: 120px;
+      text-shadow: 0 1px 1px rgba(0,0,0,.4);
+      background-color: transparent;
+      border: 0;
+    }
+
+    .carousel .item {
+      height: 500px;
+    }
+    .carousel img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      height: 500px;
+    }
+
+    .carousel-caption {
+      background-color: transparent;
+      position: static;
+      max-width: 550px;
+      padding: 0 20px;
+      margin-top: 200px;
+    }
+    .carousel-caption h1,
+    .carousel-caption .lead {
+      margin: 0;
+      line-height: 1.25;
+      color: #fff;
+      text-shadow: 0 1px 1px rgba(0,0,0,.4);
+    }
+    .carousel-caption .btn {
+      margin-top: 10px;
+    }
+    /* MARKETING CONTENT
+    -------------------------------------------------- */
+
+    /* Center align the text within the three columns below the carousel */
+    .marketing .span4 {
+      text-align: center;
+    }
+    .marketing h2 {
+      font-weight: normal;
+    }
+    .marketing .span4 p {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+</style>
