@@ -1,38 +1,64 @@
+<div class="navbar-wrapper">
+<div class="container">
 <div class="navbar navbar-inverse">
  	<div class="navbar-inner">
-	    <div class="container">
 	      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </a>
-	      <a class="brand" href="/">Expense Manager</a>
+	      <a class="brand" href="/">ExpenseManager</a>
 	      <div class="nav-collapse collapse">
 	        <ul class="nav">
-	              <li class="active">
-	              	<% if user_signed_in? %>
-	              		<%= link_to "Home", home_index_path%>
-	          		<% else %>
-	              		<%= link_to "Home", root_path %>
-	          		<% end %>
-	        		</li>
+        		<% if (params[:controller] == 'home' && params[:action] = 'index') || (params[:controller] == 'front' && params[:action] = 'index') %>
+              <li class="active">
+            <% else %>
+            	<li>
+          	<% end %>
+            <% if user_signed_in? %>
+            	<%= link_to "Dashboard", home_index_path%>
+          	<% else %>
+            	<%= link_to "Home", root_path %>
+          	<% end %>
+        			</li>
 							<% if user_signed_in? %>
-								<li><%= link_to "New Expense", "/expenses/new" %></li>
-								<li><%= link_to "New Payment", "/payments/new" %></li>
+								<% if params[:controller] == 'expenses' && params[:action] = 'new' && request.fullpath.split("/")[1] == 'expenses' %>
+									<li class="active"><%= link_to "New Expense", "/expenses/new" %></li>
+								<% else %>
+									<li><%= link_to "New Expense", "/expenses/new" %></li>
+								<% end %>
+								<% if params[:controller] == 'expenses' && params[:action] = 'new' && request.fullpath.split("/")[1] == 'payments' %>
+									<li class="active"><%= link_to "New Payment", "/payments/new" %></li>
+								<% else %>
+									<li><%= link_to "New Payment", "/payments/new" %></li>
+								<% end %>
 							<% end %>
 							<% if user_signed_in? %>
-						  	<li><%= link_to('Edit account', edit_user_registration_path) %></li>
+						  	<% if params[:controller] == 'devise/registrations' && params[:action] = 'edit' %>
+						  		<li class="active"><%= link_to('Edit account', edit_user_registration_path) %></li>
+					  		<% else %>
+					  			<li><%= link_to('Edit account', edit_user_registration_path) %></li>
+				  			<% end%>
 							<% else %>
-								<li><%= link_to "Sign up", "/users/sign_up" %></li>
+								<% if params[:controller] == 'devise/registrations' && params[:action] = 'new' %>
+									<li class="active"><%= link_to "Sign up", "/users/sign_up" %></li>
+								<% else %>
+									<li><%= link_to "Sign up", "/users/sign_up" %></li>
+								<% end %>
 							<% end %>
 							<% if user_signed_in? %>
 								<li><%= link_to('Logout', destroy_user_session_path, :method=>'delete') %></li>
 							<% else %>
-								<li><%= link_to "Sign in", "/users/sign_in" %></li>
+								<% if params[:controller] == 'devise/sessions' && params[:action] = 'new' %>
+									<li class="active"><%= link_to "Sign in", "/users/sign_in" %></li>
+								<% else %>
+									<li><%= link_to "Sign in", "/users/sign_in" %></li>
+								<% end %>
 							<% end %>
 
 	        </ul>
 	      </div><!--/.nav-collapse -->
-	    </div>
   	</div>
+</div>
+</div>
 </div>

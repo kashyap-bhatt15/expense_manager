@@ -6,7 +6,7 @@ ExpenseManager::Application.routes.draw do
   # get "expense/new"
   # get "payment/new"
   match 'payments/new' => 'expenses#new'
-
+  
   # get "users/show"
 	root :to => 'front#index'
   devise_for :users
