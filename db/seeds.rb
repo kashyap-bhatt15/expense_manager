@@ -12,10 +12,11 @@ Mongoid.purge!
 
 puts ''
 puts 'SETTING UP SOME DEFAULT USER LOGIN'
-user1 = User.create! :name => 'User1', :email => 'user1@example.com', :password => 'please1', :password_confirmation => 'please1'
-user2 = User.create! :name => 'User2', :email => 'user2@example.com', :password => 'please2', :password_confirmation => 'please2'
-user3 = User.create! :name => 'User3', :email => 'user3@example.com', :password => 'please3', :password_confirmation => 'please3'
-user4 = User.create! :name => 'User4', :email => 'user4@example.com', :password => 'please4', :password_confirmation => 'please4'
+user1 = User.create! :name => 'Thomas', :email => 'thomas@example.com', :password => 'thomas1', :password_confirmation => 'thomas1'
+user2 = User.create! :name => 'Smith', :email => 'smith@example.com', :password => 'smith1', :password_confirmation => 'smith1'
+user3 = User.create! :name => 'Clark', :email => 'clark@example.com', :password => 'clark1', :password_confirmation => 'clark1'
+user4 = User.create! :name => 'Davis', :email => 'davis@example.com', :password => 'davis1', :password_confirmation => 'davis1'
+user4 = User.create! :name => 'Adams', :email => 'adams@example.com', :password => 'adams1', :password_confirmation => 'adams1'
 puts 'Users created'
 puts ''
 
