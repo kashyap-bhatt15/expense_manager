@@ -11,13 +11,13 @@
 	    </div>
   	<% end %>
 	
-	<% if @transaction == 1 %>
+	<!--<% if @transaction == 1 %>
 		<div class="control-group">
 			<div class="controls">
 	  			<%= f.text_field :name, :placeholder => "Name the expense...", :class => "input-xlarge" %>
 			</div>
 		</div>
-  	<% end %>
+  	<% end %>-->
 
 
   	<div class="control-group">
@@ -44,6 +44,13 @@
 		</div>
 	<% end %>
 	<% if @transaction == 1 %>
+		
+		<div class="control-group">
+			<div class="controls">
+		  		<%= f.text_field :expense_date, :value => "#{Time.new.strftime('%m-%d-%Y')}", :placeholder => "Select expense date...", :class => "input-xlarge" %>
+		  		<span class="help-inline"><i>Choose the date when expense happened</i></span>
+			</div>
+		</div>
 		<div class="control-group">
 			<div class="controls">
 			  <%= collection_select(:expense, :category, @categories, :id, :name, {}, {:class => "input-xlarge"}) %>
@@ -52,8 +59,7 @@
 		</div>
 		<div class="control-group">
 			<div class="controls">
-		  		<%= f.text_field :expense_date, :value => "#{Time.new.strftime('%m-%d-%Y')}", :placeholder => "Select expense date...", :class => "input-xlarge" %>
-		  		<span class="help-inline"><i>Choose the date when expense happened</i></span>
+	  			<%= f.text_field :name, :placeholder => "Name the expense...", :class => "input-xlarge" %>
 			</div>
 		</div>
 		<!--
@@ -67,9 +73,9 @@
   	<div class="control-group">
 		<div class="controls">
 			<% if @transaction == 1 %>
-    			<%= f.submit "Create Expense", :class => "btn-large btn-primary"%>
+    			<%= f.submit "Submit", :class => "btn-large btn-primary"%>
     		<% else %>
-    			<%= f.submit "Post Payment", :class => "btn-large btn-primary"%>
+    			<%= f.submit "Submit", :class => "btn-large btn-primary"%>
     		<% end %>
   		</div>
   	</div>

@@ -3,8 +3,14 @@
 	</div>
 	<div class="span6">
 		<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => "form-horizontal" }) do |f| %>
-			<%= devise_error_messages! %>
+
+			<%#= devise_error_messages! %>
 			<legend>Sign In</legend>
+			<div class="control-group">
+				<div class="controls">
+					<%= devise_error_messages! %>
+				</div>
+			</div>
 			<div class="control-group">
 				<div class="controls">
 					<%= f.email_field :email, :placeholder => "Write your email here...", :class => "input-xlarge" %>

@@ -23,14 +23,14 @@
         			</li>
 							<% if user_signed_in? %>
 								<% if params[:controller] == 'expenses' && params[:action] = 'new' && request.fullpath.split("/")[1] == 'expenses' %>
-									<li class="active"><%= link_to "New Expense", "/expenses/new" %></li>
+									<li class="active"><%= link_to "Post an Expense", "/expenses/new" %></li>
 								<% else %>
-									<li><%= link_to "New Expense", "/expenses/new" %></li>
+									<li><%= link_to "Post an Expense", "/expenses/new" %></li>
 								<% end %>
 								<% if params[:controller] == 'expenses' && params[:action] = 'new' && request.fullpath.split("/")[1] == 'payments' %>
-									<li class="active"><%= link_to "New Payment", "/payments/new" %></li>
+									<li class="active"><%= link_to "Post a Payment", "/payments/new" %></li>
 								<% else %>
-									<li><%= link_to "New Payment", "/payments/new" %></li>
+									<li><%= link_to "Post a payment", "/payments/new" %></li>
 								<% end %>
 							<% end %>
 							<% if user_signed_in? %>
@@ -41,9 +41,9 @@
 				  			<% end%>
 							<% else %>
 								<% if params[:controller] == 'devise/registrations' && params[:action] = 'new' %>
-									<li class="active"><%= link_to "Sign up", "/users/sign_up" %></li>
+									<li class="active"><%= link_to "Register", "/users/sign_up" %></li>
 								<% else %>
-									<li><%= link_to "Sign up", "/users/sign_up" %></li>
+									<li><%= link_to "Register", "/users/sign_up" %></li>
 								<% end %>
 							<% end %>
 							<% if user_signed_in? %>
@@ -55,8 +55,10 @@
 									<li><%= link_to "Sign in", "/users/sign_in" %></li>
 								<% end %>
 							<% end %>
-
 	        </ul>
+	        <% if user_signed_in? %>
+	        	<label class="pull-right">Welcome, <%= current_user.name %></label>
+	        <% end %>
 	      </div><!--/.nav-collapse -->
   	</div>
 </div>
