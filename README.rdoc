@@ -1,6 +1,3 @@
 == Expense Manager Document
 
-Application for managing shared expenses and personal budget monitoring. 
-
-
-* [Staging](http://fathomless-coast-7409.herokuapp.com/)
+Application for managing shared expenses and personal budget monitoring.
