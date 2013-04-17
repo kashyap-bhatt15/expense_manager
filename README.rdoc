@@ -1,10 +1,12 @@
-# Expense Manager
+Expense Manager
+========================
 
-## Prototype Application for managing shared expenses and personal budget monitoring.
+Prototype Application for managing shared expenses and personal budget monitoring.
+----------------------------------------
 
 I have built this prototype using Ruby On Rails to demonstrate my idea of an application that allows any one to manage their shared expenses as well as little bit of personal expense monitoring.
 
-Prototype of application can be found at [http://fathomless-coast-7409.herokuapp.com/](http://fathomless-coast-7409.herokuapp.com/ "Expense Manager")
+Prototype of application can be found at [http://fathomless-coast-7409.herokuapp.com/](http://fathomless-coast-7409.herokuapp.com/)
 
 
 
