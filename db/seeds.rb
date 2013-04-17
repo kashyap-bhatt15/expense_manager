@@ -10,6 +10,7 @@ puts 'EMPTY THE MONGODB DATABASE'
 #Mongoid.master.collections.reject { |c| c.name =~ /^system/}.each(&:drop)
 Mongoid.purge!
 
+=begin
 puts 'SETTING UP SOME DEFAULT USER LOGIN'
 user1 = User.create! :name => 'Charles Thomas', :email => 'thomas@example.com', :password => 'thomas1', :password_confirmation => 'thomas1'
 user2 = User.create! :name => 'John Smith', :email => 'smith@example.com', :password => 'smith1', :password_confirmation => 'smith1'
@@ -17,6 +18,7 @@ user3 = User.create! :name => 'Robert Clark', :email => 'clark@example.com', :pa
 user4 = User.create! :name => 'Paul Davis', :email => 'davis@example.com', :password => 'davis1', :password_confirmation => 'davis1'
 user5 = User.create! :name => 'Mark Adams', :email => 'adams@example.com', :password => 'adams1', :password_confirmation => 'adams1'
 puts 'Users created'
+=end
 
 puts 'CREATING SOME DEFAULT CATEGORIES'
 cat1 = Category.create! :name => 'House rent', :description => 'House rent'
