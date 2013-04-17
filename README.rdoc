@@ -1,5 +1,4 @@
-# Expense Manager #
-========================
+== Expense Manager
 
 Prototype Application for managing shared expenses and personal budget monitoring.
 ----------------------------------------
